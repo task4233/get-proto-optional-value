@@ -1,0 +1,21 @@
+syntax = "proto3";
+package sample;
+import "google/protobuf/descriptor.proto";
+
+option go_package = "../generated";
+
+// EnumValueOptionsを拡張
+extend google.protobuf.EnumValueOptions {
+  optional ColorOptions color_options = 50001;
+}
+
+// Enum用のOption値
+message ColorOptions {
+  string color_code = 1;
+}
+
+// 色を表すEnumと、そのオプション定義
+enum Color {
+  WHITE = 0 [ (color_options) = {color_code: "#FFFFFF" } ];
+  BLACK = 1 [ (color_options) = {color_code: "#000000" } ];
+}
